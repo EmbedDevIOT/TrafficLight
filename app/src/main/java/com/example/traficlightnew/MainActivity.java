@@ -9,8 +9,9 @@ import android.widget.Button;       // класс кнопок
 import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
-     // user variables
+     // Инициализация переменных
     private Button btnStart;
+
     private LinearLayout b_1;
     private LinearLayout b_2, b_3;
     private boolean start_stop = false;
@@ -33,21 +34,22 @@ public class MainActivity extends AppCompatActivity {
 
         if(!start_stop) {
             start_stop =  true;
-            btnStart.setText("STOP");
-            b_1.setBackgroundColor(Color.RED); // Данный метод меняет цвет Linearlayout на Black
+            btnStart.setText("STOP");           // Меняем текст в кнопке
+            b_1.setBackgroundColor(Color.RED);  // Данный метод меняет цвет Linearlayout на Red
 
             // создаем новый поток или новую ветку (он не зависит от основной ветки)
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     while (start_stop) {
-                        if(counter <= 20){counter ++;}
+                        if(counter <= 25){counter ++;}
                         else counter = 0;
 
-                        TrafficLight();
+                        TrafficLight(); // метод обработки таймингов переключения цвета
+
                         try {
                             Thread.sleep(1000);
-                        } catch (InterruptedException e) { // метод для отработки ошибок
+                        } catch (InterruptedException e) { // метод для отработки ошибок (создан автоматически)
                             throw new RuntimeException(e);
                         }
                     }
@@ -58,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
             start_stop = false;
             counter = 0;
             btnStart.setText("START"); // Изменение текста кнопки
-            b_1.setBackgroundColor(Color.GRAY);
-            b_2.setBackgroundColor(Color.GRAY);
+            b_1.setBackgroundColor(Color.GRAY); // Прямое изменение цвета
+            b_2.setBackgroundColor(getResources().getColor(R.color.Grey)); //Изменение цвета с взятием из ресурсов.
             b_3.setBackgroundColor(Color.GRAY);
         }
     }
@@ -75,14 +77,52 @@ public class MainActivity extends AppCompatActivity {
     //----------------------------- ОБРАБОТЧИК ПЕРЕКЛЮЧЕНИЯ ЦВЕТА  ---------------------------------
     public void TrafficLight() {
         switch (counter) {
-            case 5:
-            b_1.setBackgroundColor(Color.GRAY);
-            b_2.setBackgroundColor(Color.YELLOW);
-            break;
+            case 1:
+                b_1.setBackgroundColor(getResources().getColor(R.color.Grey)); // Берем цвет из ресурсов.
+                b_2.setBackgroundColor(getResources().getColor(R.color.Grey)); // Берем цвет из ресурсов.
+                b_3.setBackgroundColor(Color.GREEN); // Прямое изменение цвета заливки
+                 break;
 
-            case 6:
-            b_2.setBackgroundColor(Color.GRAY);
-            b_3.setBackgroundColor(Color.GREEN);
+            case 10:
+                b_1.setBackgroundColor(getResources().getColor(R.color.Grey));
+                b_2.setBackgroundColor(getResources().getColor(R.color.Grey));
+                b_3.setBackgroundColor(getResources().getColor(R.color.Grey));
+                break;
+            case 11:
+                b_1.setBackgroundColor(getResources().getColor(R.color.Grey));
+                b_2.setBackgroundColor(getResources().getColor(R.color.Grey));
+                b_3.setBackgroundColor(getResources().getColor(R.color.Green));
+                break;
+            case 13:
+                b_1.setBackgroundColor(getResources().getColor(R.color.Grey));
+                b_2.setBackgroundColor(getResources().getColor(R.color.Grey));
+                b_3.setBackgroundColor(getResources().getColor(R.color.Grey));
+                break;
+            case 14:
+                b_1.setBackgroundColor(getResources().getColor(R.color.Grey));
+                b_2.setBackgroundColor(getResources().getColor(R.color.Grey));
+                b_3.setBackgroundColor(getResources().getColor(R.color.Green));
+                break;
+            case 15:
+                b_1.setBackgroundColor(getResources().getColor(R.color.Grey));
+                b_2.setBackgroundColor(getResources().getColor(R.color.Grey));
+                b_3.setBackgroundColor(getResources().getColor(R.color.Grey));
+                break;
+            case 16:
+                b_1.setBackgroundColor(getResources().getColor(R.color.Grey));
+                b_2.setBackgroundColor(getResources().getColor(R.color.Grey));
+                b_3.setBackgroundColor(getResources().getColor(R.color.Green));
+                break;
+            case 17:
+                b_1.setBackgroundColor(getResources().getColor(R.color.Grey));
+                b_2.setBackgroundColor(getResources().getColor(R.color.Yellow));
+                b_3.setBackgroundColor(getResources().getColor(R.color.Grey));
+                break;
+            case 20:
+                b_1.setBackgroundColor(getResources().getColor(R.color.Red));
+                b_2.setBackgroundColor(getResources().getColor(R.color.Grey));
+                b_3.setBackgroundColor(getResources().getColor(R.color.Grey));
+                break;
         }
     }
     //----------------------------------------------------------------------------------------------
